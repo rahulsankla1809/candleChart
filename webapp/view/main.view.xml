@@ -1,0 +1,15 @@
+<mvc:View controllerName="com.test.candlegraph.controller.main" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:graph="com.test.candlegraph.graph">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<graph:CandleGraph id="CandleGraph1" title="Candle Graph" XAxisLabel="Year" YAxisLabel="Values" candleColor="Red" circleColor="Green"
+							lineColor="Blue" showHorizontalDashedLines="true" horizontalDashedLinesColor="Pink"  showVerticalDashedLines="true" verticalDashedLinesColor="orange"/>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

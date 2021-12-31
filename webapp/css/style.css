@@ -1,0 +1,41 @@
+/* Enter your custom styles here */
+.graph .labels.x-labels {
+    text-anchor: middle;
+}
+
+.graph .labels.y-labels {
+    text-anchor: end;
+}
+
+/*.graph {
+  height: 500px;
+  width: 800px;
+}
+*/
+.graph .grid {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 1;
+}
+
+.labels {
+    font-size: 13px;
+}
+
+.label-title-x {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    fill: black;
+}
+
+.label-title-y {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    fill: black;
+    writing-mode: vertical-rl;
+	text-orientation: upright;
+    
+    
+    }
