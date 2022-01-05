@@ -66,7 +66,7 @@ sap.ui.define([],
 			oRm.writeClasses();
 			oRm.write(">");
 			oRm.write("<text x='" + (xLength / 2) + "' y='20'");
-			oRm.addClass("label-title-x");
+			oRm.addClass("label-graph");
 			oRm.writeClasses();
 			oRm.write(">" + oControl.getTitle() + "</text>");
 			oRm.write("</g>");
@@ -100,9 +100,7 @@ sap.ui.define([],
 				if (oControl.getShowVerticalDashedLines()) {
 					oRm.write("<line x1='" + xAxisTextStartPosition + "' x2='" + xAxisTextStartPosition + "' y1='" + yMargin + "' y2='" + yLength +
 						"' stroke='" + oControl.getVerticalDashedLinesColor() + "' stroke-width='1' stroke-dasharray='5,5'/>");
-
 				}
-
 			}
 			oRm.write("<text x='" + (xLength / 2) + "' y='" + (yLength + 40) + "'");
 			oRm.addClass("label-title-x");
@@ -120,16 +118,13 @@ sap.ui.define([],
 				YAxisTextStartPosition = YAxisTextStartPosition - yAxisSeparation;
 				oRm.write("<text x='" + (xMargin - 20) + "' y='" + (YAxisTextStartPosition) + "'>" + ((i + 1) * yAxisDivision) + "</text>");
 				// draw horizontal dashed lines
-
 				yAxisValuesPositions.push({
 					label: ((i + 1) * yAxisDivision),
 					position: YAxisTextStartPosition
 				});
-
 				if (oControl.getShowHorizontalDashedLines()) {
 					oRm.write("<line x1='" + xMargin + "' x2='" + xLength + "' y1='" + YAxisTextStartPosition + "' y2='" + YAxisTextStartPosition +
 						"' stroke='" + oControl.getHorizontalDashedLinesColor() + "' stroke-width='1' stroke-dasharray='5,5'/>");
-
 				}
 			}
 			oRm.write("<text x='" + 20 + "' y='" + (yLength / 2) + "'");
@@ -162,10 +157,14 @@ sap.ui.define([],
 					"' stroke-width='2' />");
 				oRm.write("<circle cx='" + xAxisTextStartPosition + "' cy='" + minPosition +
 					"' r='3' stroke='" + oControl.getCircleColor() +
-					"' fill='" + oControl.getCircleColor() + "' />");
+					"' fill='" + oControl.getCircleColor() + "'>");
+				oRm.write("<title>Min Value in " + data[i].xAxis + ": " + data[i].yAxixMin + "</title>");
+				oRm.write("</circle>");
 				oRm.write("<circle cx='" + xAxisTextStartPosition + "' cy='" + maxPosition +
 					"' r='3' stroke='" + oControl.getCircleColor() +
-					"' fill='" + oControl.getCircleColor() + "' />");
+					"' fill='" + oControl.getCircleColor() + "'>");
+				oRm.write("<title>Max Value in " + data[i].xAxis + ": " + data[i].yAxixMax + "</title>");
+				oRm.write("</circle>");
 				oRm.write("</g>");
 				if (i > 0) {
 					// find the closest position of the value for mean current
@@ -182,9 +181,20 @@ sap.ui.define([],
 						yAxisSeparation;
 					oRm.write("<g>");
 					oRm.write("<line x1='" + (xAxisTextStartPosition - xAxisSeparation) + "' x2='" + xAxisTextStartPosition + "' y1='" +
-						meanPositionPrev
-						+ "' y2='" + meanPositionCurr + "' stroke='" + oControl.getLineColor() +
+						meanPositionPrev + "' y2='" + meanPositionCurr + "' stroke='" + oControl.getLineColor() +
 						"' stroke-width='2' />");
+					if (i === 1) {
+						oRm.write("<circle cx='" + (xAxisTextStartPosition - xAxisSeparation) + "' cy='" + meanPositionPrev +
+							"' r='2' stroke='" + oControl.getLineColor() +
+							"' fill='" + oControl.getLineColor() + "'>");
+						oRm.write("<title>Mean Value in " + data[i - 1].xAxis + " : " + data[i - 1].yAxixMean + "</title>");
+						oRm.write("</circle>");
+					}
+					oRm.write("<circle cx='" + (xAxisTextStartPosition) + "' cy='" + meanPositionCurr +
+						"' r='1' stroke='" + oControl.getLineColor() +
+						"' fill='" + oControl.getLineColor() + "'>");
+					oRm.write("<title>Mean Value in " + data[i].xAxis + " : " + data[i].yAxixMean +"</title>");
+					oRm.write("</circle>");
 					oRm.write("</g>");
 				}
 			}

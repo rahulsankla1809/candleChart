@@ -3,6 +3,11 @@
     text-anchor: middle;
 }
 
+circle:hover {
+    stroke-width: 8;
+}
+
+
 .graph .labels.y-labels {
     text-anchor: end;
 }
@@ -16,6 +21,13 @@
     stroke: #ccc;
     stroke-dasharray: 0;
     stroke-width: 1;
+}
+.label-graph {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    fill: black;
+    text-anchor: middle;
 }
 
 .labels {
@@ -35,7 +47,7 @@
     font-size: 12px;
     fill: black;
     writing-mode: vertical-rl;
-	text-orientation: upright;
-    
-    
-    }
+    text-orientation: upright;
+
+
+}
