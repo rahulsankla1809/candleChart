@@ -6,9 +6,9 @@
 				<Page id="page" title="{i18n>title}">
 					<content>
 						<graph:CandleGraph id="CandleGraph1" title="Candle Graph" XAxisLabel="Year" YAxisLabel="Values" 
-							showHorizontalDashedLines="true"  showVerticalDashedLines="true" />
-							<!--candleColor="black" circleColor="#FF5733" lineColor="Blue" horizontalDashedLinesColor="Pink" verticalDashedLinesColor="orange"-->
-							
+							showHorizontalDashedLines="true"  showVerticalDashedLines="true"
+							candleColor="green" circleColor="#FF5733" lineColor="Blue" horizontalDashedLinesColor="Pink" verticalDashedLinesColor="orange"
+							/>
 					</content>
 				</Page>
 			</pages>
