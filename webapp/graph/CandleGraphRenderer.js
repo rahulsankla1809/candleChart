@@ -39,9 +39,8 @@ sap.ui.define([],
 			var yAxisSeparation = height / (dataLength + 1);
 			var yAxisValuesPositions = [];
 
-			// find the reduction factor for optimally show the graph.
-
-			var reductionFactor = Math.ceil(yAxisMaxValue / yLength);
+			// find the reduction factor for optimally show the graph. (no need for it)
+			// var reductionFactor = Math.ceil(yAxisMaxValue / yLength);
 
 			// to the nearest 10 or 100 or 1000
 			var yAxisMaxValuePossible = Math.ceil(yAxisMaxValue / Math.pow(10, (yAxisMaxValue.toString().length - 1))) * Math.pow(10, ((
@@ -93,12 +92,12 @@ sap.ui.define([],
 			oRm.addClass("labels x-labels");
 			oRm.writeClasses();
 			oRm.write(">");
-			for (var i = 0; i < 10; i++) {
+			for (var i = 0; i < dataLength; i++) {
 				xAxisTextStartPosition = xAxisTextStartPosition + xAxisSeparation;
 				oRm.write("<text x='" + xAxisTextStartPosition + "' y='" + (yLength + 20) + "'>" + data[i].xAxis + "</text>");
-				// draw horizontal dashed lines
+				// draw Vertical dashed lines
 				if (oControl.getShowVerticalDashedLines()) {
-					oRm.write("<line x1='" + xAxisTextStartPosition + "' x2='" + xAxisTextStartPosition + "' y1='" + yMargin + "' y2='" + yLength +
+					oRm.write("<line x1='" + xAxisTextStartPosition + "' x2='" + xAxisTextStartPosition + "' y1='" + (yMargin + 30) + "' y2='" + yLength +
 						"' stroke='" + oControl.getVerticalDashedLinesColor() + "' stroke-width='1' stroke-dasharray='5,5'/>");
 				}
 			}
@@ -114,7 +113,7 @@ sap.ui.define([],
 			oRm.addClass("labels y-labels");
 			oRm.writeClasses();
 			oRm.write(">");
-			for (i = 0; i < 10; i++) {
+			for (i = 0; i < dataLength; i++) {
 				YAxisTextStartPosition = YAxisTextStartPosition - yAxisSeparation;
 				oRm.write("<text x='" + (xMargin - 20) + "' y='" + (YAxisTextStartPosition) + "'>" + ((i + 1) * yAxisDivision) + "</text>");
 				// draw horizontal dashed lines
@@ -123,7 +122,7 @@ sap.ui.define([],
 					position: YAxisTextStartPosition
 				});
 				if (oControl.getShowHorizontalDashedLines()) {
-					oRm.write("<line x1='" + xMargin + "' x2='" + xLength + "' y1='" + YAxisTextStartPosition + "' y2='" + YAxisTextStartPosition +
+					oRm.write("<line x1='" + xMargin + "' x2='" + (xLength - 30) + "' y1='" + YAxisTextStartPosition + "' y2='" + YAxisTextStartPosition +
 						"' stroke='" + oControl.getHorizontalDashedLinesColor() + "' stroke-width='1' stroke-dasharray='5,5'/>");
 				}
 			}
@@ -137,7 +136,8 @@ sap.ui.define([],
 			xAxisTextStartPosition = xMargin;
 			YAxisTextStartPosition = height;
 			// draw the graph 
-			for (i = 0; i < 10; i++) {
+			var path = [];
+			for (i = 0; i < dataLength; i++) {
 				// find the closest position of the value for min
 				var closestMin = yAxisValuesPositions.reduce(function (prev, curr) {
 					return (Math.abs(curr.label - data[i].yAxixMin) < Math.abs(prev.label - data[i].yAxixMin) ? curr : prev);
@@ -154,7 +154,11 @@ sap.ui.define([],
 				oRm.write("<g>");
 				oRm.write("<line x1='" + xAxisTextStartPosition + "' x2='" + xAxisTextStartPosition + "' y1='" + minPosition +
 					"' y2='" + maxPosition + "' stroke='" + oControl.getCandleColor() +
-					"' stroke-width='2' />");
+					"' stroke-width='2' ");
+				oRm.addClass("styleLines");
+				oRm.writeClasses();
+				oRm.write("/>");
+
 				oRm.write("<circle cx='" + xAxisTextStartPosition + "' cy='" + minPosition +
 					"' r='3' stroke='" + oControl.getCircleColor() +
 					"' fill='" + oControl.getCircleColor() + "'>");
@@ -166,39 +170,38 @@ sap.ui.define([],
 				oRm.write("<title>Max Value in " + data[i].xAxis + ": " + data[i].yAxixMax + "</title>");
 				oRm.write("</circle>");
 				oRm.write("</g>");
-				if (i > 0) {
-					// find the closest position of the value for mean current
-					var closestMeanCurr = yAxisValuesPositions.reduce(function (prev, curr) {
-						return (Math.abs(curr.label - data[i].yAxixMean) < Math.abs(prev.label - data[i].yAxixMean) ? curr : prev);
-					});
-					// find the closest position of the value for mean previous
-					var closestMeanPrev = yAxisValuesPositions.reduce(function (prev, curr) {
-						return (Math.abs(curr.label - data[i - 1].yAxixMean) < Math.abs(prev.label - data[i - 1].yAxixMean) ? curr : prev);
-					});
-					var meanPositionCurr = closestMeanCurr.position - ((data[i].yAxixMean - closestMeanCurr.label) / closestMeanCurr.label) *
-						yAxisSeparation;
-					var meanPositionPrev = closestMeanPrev.position - ((data[i - 1].yAxixMean - closestMeanPrev.label) / closestMeanPrev.label) *
-						yAxisSeparation;
-					oRm.write("<g>");
-					oRm.write("<line x1='" + (xAxisTextStartPosition - xAxisSeparation) + "' x2='" + xAxisTextStartPosition + "' y1='" +
-						meanPositionPrev + "' y2='" + meanPositionCurr + "' stroke='" + oControl.getLineColor() +
-						"' stroke-width='2' />");
-					if (i === 1) {
-						oRm.write("<circle cx='" + (xAxisTextStartPosition - xAxisSeparation) + "' cy='" + meanPositionPrev +
-							"' r='2' stroke='" + oControl.getLineColor() +
-							"' fill='" + oControl.getLineColor() + "'>");
-						oRm.write("<title>Mean Value in " + data[i - 1].xAxis + " : " + data[i - 1].yAxixMean + "</title>");
-						oRm.write("</circle>");
-					}
-					oRm.write("<circle cx='" + (xAxisTextStartPosition) + "' cy='" + meanPositionCurr +
-						"' r='1' stroke='" + oControl.getLineColor() +
-						"' fill='" + oControl.getLineColor() + "'>");
-					oRm.write("<title>Mean Value in " + data[i].xAxis + " : " + data[i].yAxixMean +"</title>");
-					oRm.write("</circle>");
-					oRm.write("</g>");
-				}
-			}
 
+				// find the closest position of the value for mean current
+				var closestMeanCurr = yAxisValuesPositions.reduce(function (prev, curr) {
+					return (Math.abs(curr.label - data[i].yAxixMean) < Math.abs(prev.label - data[i].yAxixMean) ? curr : prev);
+				});
+				// 	// find the closest position of the value for mean previous
+				var meanPositionCurr = closestMeanCurr.position - ((data[i].yAxixMean - closestMeanCurr.label) / closestMeanCurr.label) *
+					yAxisSeparation;
+				if (i === 0) {
+					var sPath = "M" + xAxisTextStartPosition + ", " + meanPositionCurr + " ";
+				} else {
+					sPath = sPath + "L" + xAxisTextStartPosition + ", " + meanPositionCurr + " ";
+				}
+				path.push({
+					x: xAxisTextStartPosition,
+					y: meanPositionCurr
+				});
+			}
+			// add path (Old code had Lines instead, path seems to be a better choice)
+			oRm.write("<g>");
+			oRm.write("<path d='" + sPath + "' " + "stroke='" + oControl.getLineColor() + "' fill=none stroke-width='2' >");
+			oRm.write("</path>");
+			oRm.write("</g>");
+			// add circles on the path points
+			oRm.write("<g>");
+			for (i = 0; i < dataLength; i++) {
+				oRm.write("<circle cx='" + (path[i].x) + "' cy='" + path[i].y + "' r='2' stroke='" + oControl.getLineColor() +
+					"' fill='" + oControl.getLineColor() + "'>");
+				oRm.write("<title>Mean Value in " + data[i].xAxis + " : " + data[i].yAxixMean + "</title>");
+				oRm.write("</circle>");
+			}
+			oRm.write("</g>");
 			// close svg
 			oRm.write("</svg>");
 			// Close the Div 		              

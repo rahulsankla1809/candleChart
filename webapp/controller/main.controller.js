@@ -55,7 +55,14 @@ sap.ui.define([
 				yAxixMin: "100",
 				yAxixMax: "270",
 				yAxixMean: "170"
-			}];
+			}, {
+				xAxis: "2010",
+				yAxixMin: "120",
+				yAxixMax: "240",
+				yAxixMean: "140"
+			}
+			
+			];
 			this.getView().byId("CandleGraph1").initializeData(data);
 		}
 	});

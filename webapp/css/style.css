@@ -7,6 +7,17 @@ circle:hover {
     stroke-width: 8;
 }
 
+path:hover {
+    stroke-width: 4;
+    opacity: 0.5;
+    filter: invert(100%);
+}
+
+.styleLines:hover {
+    stroke-width: 4;
+    opacity: 0.5;
+    filter: invert(100%);
+}
 
 .graph .labels.y-labels {
     text-anchor: end;
