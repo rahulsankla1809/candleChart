@@ -152,7 +152,7 @@ sap.ui.define([],
 
 				xAxisTextStartPosition = xAxisTextStartPosition + xAxisSeparation;
 				oRm.write("<g>");
-				oRm.write("<line x1='" + xAxisTextStartPosition + "' x2='" + xAxisTextStartPosition + "' y1='" + minPosition +
+				oRm.write("<line id=candle" + i + " x1='" + xAxisTextStartPosition + "' x2='" + xAxisTextStartPosition + "' y1='" + minPosition +
 					"' y2='" + maxPosition + "' stroke='" + oControl.getCandleColor() +
 					"' stroke-width='2' ");
 				oRm.addClass("styleLines");
@@ -190,7 +190,7 @@ sap.ui.define([],
 			}
 			// add path (Old code had Lines instead, path seems to be a better choice)
 			oRm.write("<g>");
-			oRm.write("<path d='" + sPath + "' " + "stroke='" + oControl.getLineColor() + "' fill=none stroke-width='2' >");
+			oRm.write("<path id='linePath' d='" + sPath + "' " + "stroke='" + oControl.getLineColor() + "' fill=none stroke-width='2' >");
 			oRm.write("</path>");
 			oRm.write("</g>");
 			// add circles on the path points
@@ -202,6 +202,18 @@ sap.ui.define([],
 				oRm.write("</circle>");
 			}
 			oRm.write("</g>");
+			// on click events
+			// Line chart clicked
+			$(document).on("click", "#linePath", function () {
+				oControl._onClick("lineClicked", oControl._data);
+			});
+			// Candle clicked (not a good way to do, but functional)
+			$(document).on("click", "[id*='candle']", function (element) {
+				var sElementId = element.currentTarget.id;
+				var dataPointer = sElementId.replace(/candle/, '');
+				oControl._onClick("candleClicked", oControl._data[dataPointer]);
+			});
+
 			// close svg
 			oRm.write("</svg>");
 			// Close the Div 		              

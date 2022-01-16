@@ -8,7 +8,7 @@
 						<graph:CandleGraph id="CandleGraph1" title="Candle Graph" XAxisLabel="Year" YAxisLabel="Values" 
 							showHorizontalDashedLines="true"  showVerticalDashedLines="true"
 							candleColor="green" circleColor="#FF5733" lineColor="Blue" horizontalDashedLinesColor="Pink" verticalDashedLinesColor="orange"
-							/>
+							lineClick="onLineClicked" candleClick="onCandleClicked"/>
 					</content>
 				</Page>
 			</pages>

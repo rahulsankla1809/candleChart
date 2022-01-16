@@ -53,7 +53,7 @@ sap.ui.define([
 					},
 					"showVerticalDashedLines": {
 						type: "boolean",
-						defaultValue: false 
+						defaultValue: false
 					},
 					"verticalDashedLinesColor": {
 						type: "string",
@@ -61,20 +61,40 @@ sap.ui.define([
 					}
 				},
 				events: {
-
+					candleClick: {
+						parameters: {
+							value: {
+								type: "object"
+							}
+						}
+					},
+					lineClick: {
+						parameters: {
+							value: {
+								type: "object"
+							}
+						}
+					}
 				}
-			},
-			init: function () {
-				this._data = {};
-				this.xMargin = 90;
-				this.yMargin = 5;
-			},
-			initializeData: function (oData) {
-				this._data = oData;
-			},
-			onAfterRendering: function () {
-
 			}
 		});
+
+		graph.prototype.init = function () {
+			this._data = {};
+			this.xMargin = 90;
+			this.yMargin = 5;
+		};
+		graph.prototype.initializeData = function (oData) {
+			this._data = oData;
+		};
+		graph.prototype.onAfterRendering = function () {
+		};
+		graph.prototype._onClick = function (sSource, oData) {
+			if(sSource === "lineClicked"){
+				this.fireEvent("lineClick", {value: oData});
+			}else if(sSource === "candleClicked"){
+				this.fireEvent("candleClick", {value: oData});
+			}
+		};
 		return graph;
 	});
