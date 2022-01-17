@@ -1,0 +1,64 @@
+/* Enter your custom styles here */
+.graph .labels.x-labels {
+    text-anchor: middle;
+}
+
+circle:hover {
+    stroke-width: 8;
+}
+
+path:hover {
+    stroke-width: 4;
+    opacity: 0.5;
+    filter: invert(100%);
+}
+
+.styleLines:hover {
+    stroke-width: 4;
+    /*opacity: 0.5;*/
+    filter: invert(100%);
+}
+
+.graph .labels.y-labels {
+    text-anchor: end;
+}
+
+/*.graph {
+  height: 500px;
+  width: 800px;
+}
+*/
+.graph .grid {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 1;
+}
+.label-graph {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    fill: black;
+    text-anchor: middle;
+}
+
+.labels {
+    font-size: 13px;
+}
+
+.label-title-x {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    fill: black;
+}
+
+.label-title-y {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    fill: black;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+
+
+}

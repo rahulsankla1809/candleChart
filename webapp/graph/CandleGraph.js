@@ -1,8 +1,9 @@
 sap.ui.define([
 		"jquery.sap.global",
-		"sap/ui/core/Control"
+		"sap/ui/core/Control",
+		"sap/ui/dom/includeStylesheet"
 	],
-	function (jQuery, Control) {
+	function (jQuery, Control, includeStylesheet) {
 		"use strict";
 		var graph = Control.extend("com.test.candlegraph.graph.CandleGraph", {
 			metadata: {
@@ -80,6 +81,9 @@ sap.ui.define([
 		});
 
 		graph.prototype.init = function () {
+			 var libraryPath = jQuery.sap.getModulePath("com.test.candlegraph");
+			// include the control's CSS
+			includeStylesheet(libraryPath + "../graph/css/candleGraphStyle.css");
 			this._data = {};
 			this.xMargin = 90;
 			this.yMargin = 5;
