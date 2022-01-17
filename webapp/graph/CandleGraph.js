@@ -83,7 +83,7 @@ sap.ui.define([
 		graph.prototype.init = function () {
 			 var libraryPath = jQuery.sap.getModulePath("com.test.candlegraph");
 			// include the control's CSS
-			includeStylesheet(libraryPath + "../graph/css/candleGraphStyle.css");
+			includeStylesheet(libraryPath + "/graph/css/candleGraphStyle.css");
 			this._data = {};
 			this.xMargin = 90;
 			this.yMargin = 5;
