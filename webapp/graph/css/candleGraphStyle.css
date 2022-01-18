@@ -5,18 +5,22 @@
 
 circle:hover {
     stroke-width: 8;
+    cursor:pointer;
 }
 
 path:hover {
     stroke-width: 4;
     opacity: 0.5;
     filter: invert(100%);
+	cursor:pointer;
+	
 }
 
 .styleLines:hover {
     stroke-width: 4;
     /*opacity: 0.5;*/
     filter: invert(100%);
+    cursor:pointer;
 }
 
 .graph .labels.y-labels {
