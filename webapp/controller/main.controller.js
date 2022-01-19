@@ -22,8 +22,8 @@ sap.ui.define([
 					yAxixMean: "160"
 				}, {
 					xAxis: "2003",
-					yAxixMin: "241",
-					yAxixMax: "110",
+					yAxixMin: "110",
+					yAxixMax: "241",
 					yAxixMean: "186"
 				}, {
 					xAxis: "2004",

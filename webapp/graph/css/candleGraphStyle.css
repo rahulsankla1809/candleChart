@@ -3,7 +3,13 @@
     text-anchor: middle;
 }
 
-circle:hover {
+.legends{
+	position:absolute;
+	top: 1em;
+	
+}
+
+.styleCircle:hover {
     stroke-width: 8;
     cursor:pointer;
 }

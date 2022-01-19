@@ -36,7 +36,11 @@ sap.ui.define([
 						type: "string",
 						defaultValue: "Orange"
 					},
-					"circleColor": {
+					"circleMaxColor": {
+						type: "string",
+						defaultValue: "Black"
+					},
+					"circleMinColor": {
 						type: "string",
 						defaultValue: "Black"
 					},
@@ -59,7 +63,24 @@ sap.ui.define([
 					"verticalDashedLinesColor": {
 						type: "string",
 						defaultValue: "Grey"
+					},
+					"showLegend": {
+						type: "boolean",
+						defaultValue: "true"
+					},
+					"minValueLegendText": {
+						type: "string",
+						defaultValue: "Minimum Value"
+					},
+					"maxValueLegendText": {
+						type: "string",
+						defaultValue: "Maximum Value"
+					},
+					"meanValueLegendText": {
+						type: "string",
+						defaultValue: "Mean Value"
 					}
+					
 				},
 				events: {
 					candleClick: {

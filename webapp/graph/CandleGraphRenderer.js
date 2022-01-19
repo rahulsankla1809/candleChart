@@ -160,13 +160,19 @@ sap.ui.define([],
 				oRm.write("/>");
 
 				oRm.write("<circle cx='" + xAxisTextStartPosition + "' cy='" + minPosition +
-					"' r='3' stroke='" + oControl.getCircleColor() +
-					"' fill='" + oControl.getCircleColor() + "'>");
+					"' r='3' stroke='" + oControl.getCircleMinColor() +
+					"' fill='" + oControl.getCircleMinColor() + "'");
+				oRm.addClass("styleCircle");
+				oRm.writeClasses();
+				oRm.write(">");
 				oRm.write("<title>Min Value in " + data[i].xAxis + ": " + data[i].yAxixMin + "</title>");
 				oRm.write("</circle>");
 				oRm.write("<circle cx='" + xAxisTextStartPosition + "' cy='" + maxPosition +
-					"' r='3' stroke='" + oControl.getCircleColor() +
-					"' fill='" + oControl.getCircleColor() + "'>");
+					"' r='3' stroke='" + oControl.getCircleMaxColor() +
+					"' fill='" + oControl.getCircleMaxColor() + "'");
+				oRm.addClass("styleCircle");
+				oRm.writeClasses();
+				oRm.write(">");
 				oRm.write("<title>Max Value in " + data[i].xAxis + ": " + data[i].yAxixMax + "</title>");
 				oRm.write("</circle>");
 				oRm.write("</g>");
@@ -197,7 +203,10 @@ sap.ui.define([],
 			oRm.write("<g>");
 			for (i = 0; i < dataLength; i++) {
 				oRm.write("<circle cx='" + (path[i].x) + "' cy='" + path[i].y + "' r='2' stroke='" + oControl.getLineColor() +
-					"' fill='" + oControl.getLineColor() + "'>");
+					"' fill='" + oControl.getLineColor() + "'");
+				oRm.addClass("styleCircle");
+				oRm.writeClasses();
+				oRm.write(">");
 				oRm.write("<title>Mean Value in " + data[i].xAxis + " : " + data[i].yAxixMean + "</title>");
 				oRm.write("</circle>");
 			}
@@ -210,12 +219,51 @@ sap.ui.define([],
 			// Candle clicked (not a good way to do, but functional)
 			$(document).on("click", "[id*='candle']", function (element) {
 				var sElementId = element.currentTarget.id;
-				var dataPointer = sElementId.replace(/candle/, '');
+				var dataPointer = sElementId.replace(/candle/, "");
 				oControl._onClick("candleClicked", oControl._data[dataPointer]);
 			});
-
 			// close svg
 			oRm.write("</svg>");
+			// creating lenegds
+			if (oControl.getShowLegend()) {
+				oRm.write(
+					"<svg version='1.2' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' role='img' width='250' height='100'"
+				);
+				oRm.addClass("legends");
+				oRm.writeClasses();
+				oRm.write(">");
+				oRm.write("<g>");
+				oRm.write("<text x='10' y='10'");
+				oRm.addClass("label-title-x");
+				oRm.writeClasses();
+				oRm.write(">" + "Legends" + "</text>");
+				oRm.write("</g>");
+				// Minimum value legend
+				oRm.write("<g>");
+				oRm.write("<circle cx='15' cy='30' r='4' stroke='" + oControl.getCircleMinColor() + "' fill='" + oControl.getCircleMinColor() + "'/>");
+				oRm.write("<text x='30' y='34'");
+				oRm.addClass("labels x-labels");
+				oRm.writeClasses();
+				oRm.write(">" + oControl.getMinValueLegendText() + "</text>");
+				oRm.write("</g>");
+				// Maximum value legend
+				oRm.write("<g>");
+				oRm.write("<circle cx='15' cy='50' r='4' stroke='" + oControl.getCircleMaxColor() + "' fill='" + oControl.getCircleMaxColor() + "'/>");
+				oRm.write("<text x='30' y='54'");
+				oRm.addClass("labels x-labels");
+				oRm.writeClasses();
+				oRm.write(">" + oControl.getMaxValueLegendText() + "</text>");
+				oRm.write("</g>");
+				// Mean value legend
+				oRm.write("<g>");
+				oRm.write("<line x1='8' x2='25' y1='70' y2='70' stroke='" + oControl.getLineColor() + "'/>");
+				oRm.write("<text x='30' y='74'");
+				oRm.addClass("labels x-labels");
+				oRm.writeClasses();
+				oRm.write(">" + oControl.getMeanValueLegendText() + "</text>");
+				oRm.write("</g>");
+				oRm.write("</svg>");
+			}
 			// Close the Div 		              
 			oRm.write("</div>");
 		};
