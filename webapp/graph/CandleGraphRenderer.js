@@ -137,6 +137,7 @@ sap.ui.define([],
 			YAxisTextStartPosition = height;
 			// draw the graph 
 			var path = [];
+			var sMeanValueHover = "";
 			for (i = 0; i < dataLength; i++) {
 				// find the closest position of the value for min
 				var closestMin = yAxisValuesPositions.reduce(function (prev, curr) {
@@ -157,7 +158,13 @@ sap.ui.define([],
 					"' stroke-width='2' ");
 				oRm.addClass("styleLines");
 				oRm.writeClasses();
-				oRm.write("/>");
+				oRm.write(">");
+				if (oControl.getShowCandleToolTip()) {
+					oRm.write("<title>Min Value in " + data[i].xAxis + ": " + data[i].yAxixMin + "\n" +
+						"Max Value in " + data[i].xAxis + ": " + data[i].yAxixMax + "\n" +
+						"Mean Value in " + data[i].xAxis + ": " + data[i].yAxixMean + "</title>");
+				}
+				oRm.write("</line>");
 
 				oRm.write("<circle cx='" + xAxisTextStartPosition + "' cy='" + minPosition +
 					"' r='3' stroke='" + oControl.getCircleMinColor() +
@@ -165,7 +172,9 @@ sap.ui.define([],
 				oRm.addClass("styleCircle");
 				oRm.writeClasses();
 				oRm.write(">");
-				oRm.write("<title>Min Value in " + data[i].xAxis + ": " + data[i].yAxixMin + "</title>");
+				if (oControl.getShowCircleToolTip()) {
+					oRm.write("<title>Min Value in " + data[i].xAxis + ": " + data[i].yAxixMin + "</title>");
+				}
 				oRm.write("</circle>");
 				oRm.write("<circle cx='" + xAxisTextStartPosition + "' cy='" + maxPosition +
 					"' r='3' stroke='" + oControl.getCircleMaxColor() +
@@ -173,7 +182,9 @@ sap.ui.define([],
 				oRm.addClass("styleCircle");
 				oRm.writeClasses();
 				oRm.write(">");
-				oRm.write("<title>Max Value in " + data[i].xAxis + ": " + data[i].yAxixMax + "</title>");
+				if (oControl.getShowCircleToolTip()) {
+					oRm.write("<title>Max Value in " + data[i].xAxis + ": " + data[i].yAxixMax + "</title>");
+				}
 				oRm.write("</circle>");
 				oRm.write("</g>");
 
@@ -193,10 +204,15 @@ sap.ui.define([],
 					x: xAxisTextStartPosition,
 					y: meanPositionCurr
 				});
+				// mean value hover value
+				sMeanValueHover = sMeanValueHover + "Mean value in " + data[i].xAxis + ": " + data[i].yAxixMean + "\n";
 			}
 			// add path (Old code had Lines instead, path seems to be a better choice)
 			oRm.write("<g>");
 			oRm.write("<path id='linePath' d='" + sPath + "' " + "stroke='" + oControl.getLineColor() + "' fill=none stroke-width='2' >");
+			if (oControl.getShowLineToolTip()) {
+				oRm.write("<title>" + sMeanValueHover + "</title>");
+			}
 			oRm.write("</path>");
 			oRm.write("</g>");
 			// add circles on the path points
@@ -207,7 +223,10 @@ sap.ui.define([],
 				oRm.addClass("styleCircle");
 				oRm.writeClasses();
 				oRm.write(">");
-				oRm.write("<title>Mean Value in " + data[i].xAxis + " : " + data[i].yAxixMean + "</title>");
+				if (oControl.getShowCircleToolTip()) {
+					oRm.write("<title>Mean Value in " + data[i].xAxis + " : " + data[i].yAxixMean + "</title>");
+				}
+
 				oRm.write("</circle>");
 			}
 			oRm.write("</g>");

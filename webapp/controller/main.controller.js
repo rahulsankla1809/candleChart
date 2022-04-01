@@ -66,8 +66,10 @@ sap.ui.define([
 			this.getView().byId("CandleGraph1").initializeData(data);
 		},
 		onLineClicked: function (oEvent) {
+			sap.m.MessageToast.show("Test");
 		},
 		onCandleClicked: function (oEvent) {
+			sap.m.MessageToast.show("Test");
 		}
 	});
 });

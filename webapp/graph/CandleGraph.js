@@ -79,6 +79,18 @@ sap.ui.define([
 					"meanValueLegendText": {
 						type: "string",
 						defaultValue: "Mean Value"
+					},
+					"showCandleToolTip": {
+						type: "boolean",
+						defaultValue: true
+					},
+					"showLineToolTip": {
+						type: "boolean",
+						defaultValue: true
+					},
+					"showCircleToolTip": {
+						type: "boolean",
+						defaultValue: true
 					}
 					
 				},
