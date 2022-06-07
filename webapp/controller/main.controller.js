@@ -66,10 +66,10 @@ sap.ui.define([
 			this.getView().byId("CandleGraph1").initializeData(data);
 		},
 		onLineClicked: function (oEvent) {
-			sap.m.MessageToast.show("Test");
+			sap.m.MessageToast.show("Horizontal Line with Mean Value is clicked. Data available in parameter 'value'");
 		},
 		onCandleClicked: function (oEvent) {
-			sap.m.MessageToast.show("Test");
+			sap.m.MessageToast.show("Candle is clicked. Data available in parameter 'value'");
 		}
 	});
 });

@@ -17,6 +17,7 @@
 
 	"sap.ui": {
 		"technology": "UI5",
+		"fullWidth": true,
 		"icons": {
 			"icon": "",
 			"favIcon": "",
@@ -34,6 +35,7 @@
 
 	"sap.ui5": {
 		"flexEnabled": false,
+		
 		"rootView": {
 			"viewName": "com.test.candlegraph.view.main",
 			"type": "XML",

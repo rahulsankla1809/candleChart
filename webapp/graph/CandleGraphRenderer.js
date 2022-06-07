@@ -241,6 +241,9 @@ sap.ui.define([],
 				var dataPointer = sElementId.replace(/candle/, "");
 				oControl._onClick("candleClicked", oControl._data[dataPointer]);
 			});
+			// $(document).on("click", "#circle", function () {
+			// 	oControl._onClick("lineClicked", oControl._data);
+			// });
 			// close svg
 			oRm.write("</svg>");
 			// creating lenegds

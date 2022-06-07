@@ -109,6 +109,13 @@ sap.ui.define([
 							}
 						}
 					}
+					// candleBallClicked:{
+					// 	parameters: {
+					// 		value: {
+					// 			type: "object"
+					// 		}
+					// 	}
+					// }
 				}
 			}
 		});
