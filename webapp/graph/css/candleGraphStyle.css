@@ -2,37 +2,29 @@
 .graph .labels.x-labels {
     text-anchor: middle;
 }
-
 .legends{
 	position:absolute;
 	top: 1em;
-	
 }
-
 .styleCircle:hover {
     stroke-width: 8;
     cursor:pointer;
 }
-
 path:hover {
     stroke-width: 4;
     opacity: 0.5;
     filter: invert(100%);
 	cursor:pointer;
-	
 }
-
 .styleLines:hover {
     stroke-width: 4;
     /*opacity: 0.5;*/
     filter: invert(100%);
     cursor:pointer;
 }
-
 .graph .labels.y-labels {
     text-anchor: end;
 }
-
 /*.graph {
   height: 500px;
   width: 800px;
@@ -50,18 +42,15 @@ path:hover {
     fill: black;
     text-anchor: middle;
 }
-
 .labels {
     font-size: 13px;
 }
-
 .label-title-x {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 12px;
     fill: black;
 }
-
 .label-title-y {
     font-weight: bold;
     text-transform: uppercase;
@@ -69,6 +58,4 @@ path:hover {
     fill: black;
     writing-mode: vertical-rl;
     text-orientation: upright;
-
-
 }

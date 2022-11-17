@@ -91,6 +91,10 @@ sap.ui.define([
 					"showCircleToolTip": {
 						type: "boolean",
 						defaultValue: true
+					},
+					"graphBackgroundColor": {
+						type: "string",
+						defaultValue: "snow"
 					}
 					
 				},

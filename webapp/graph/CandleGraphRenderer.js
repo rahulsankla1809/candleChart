@@ -54,7 +54,7 @@ sap.ui.define([],
 			oRm.write(">");
 			// write svg
 			oRm.write("<svg version='1.2' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' role='img' width='" + (
-				xLength + 30) + "' height='" + (yLength + 100) + "'");
+				xLength + 30) + "' height='" + (yLength + 100) + "' style='background-color:" + oControl.getGraphBackgroundColor() + "'" );
 			oRm.addClass("graph");
 			oRm.writeClasses();
 			oRm.write(">");
