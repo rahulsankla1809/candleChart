@@ -9,6 +9,7 @@
 .styleCircle:hover {
     stroke-width: 8;
     cursor:pointer;
+    transition: stroke-width 0.5s linear 0.5s;
 }
 path:hover {
     stroke-width: 4;
