@@ -9,6 +9,7 @@
 							showHorizontalDashedLines="true"  showVerticalDashedLines="true"
 							candleColor="green" circleMinColor="#FF5733" circleMaxColor="#777777" lineColor="Blue" horizontalDashedLinesColor="Pink" verticalDashedLinesColor="orange"
 							lineClick="onLineClicked" candleClick="onCandleClicked" showLegend="true"/>
+					<Text text="SAPUI5 Text value"/>
 					</content>
 				</Page>
 			</pages>

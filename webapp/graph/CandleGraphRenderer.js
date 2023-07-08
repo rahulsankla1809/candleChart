@@ -153,7 +153,7 @@ sap.ui.define([],
 
 				xAxisTextStartPosition = xAxisTextStartPosition + xAxisSeparation;
 				oRm.write("<g>");
-				oRm.write("<line id=candle" + i + " x1='" + xAxisTextStartPosition + "' x2='" + xAxisTextStartPosition + "' y1='" + minPosition +
+				oRm.write("<line id=candleBar" + i + " x1='" + xAxisTextStartPosition + "' x2='" + xAxisTextStartPosition + "' y1='" + minPosition +
 					"' y2='" + maxPosition + "' stroke='" + oControl.getCandleColor() +
 					"' stroke-width='2' ");
 				oRm.addClass("styleLines");
@@ -236,9 +236,9 @@ sap.ui.define([],
 				oControl._onClick("lineClicked", oControl._data);
 			});
 			// Candle clicked (not a good way to do, but functional)
-			$(document).on("click", "[id*='candle']", function (element) {
+			$(document).on("click", "[id*='candleBar']", function (element) {
 				var sElementId = element.currentTarget.id;
-				var dataPointer = sElementId.replace(/candle/, "");
+				var dataPointer = sElementId.replace(/candleBar/, "");
 				oControl._onClick("candleClicked", oControl._data[dataPointer]);
 			});
 			// $(document).on("click", "#circle", function () {
